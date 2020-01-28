@@ -1,0 +1,179 @@
+<body>
+  <style>
+    #gridContainer {
+      padding-bottom: 10px;
+      visibility: hidden;
+    }
+
+    table {
+		border: 1px solid green;
+		background-color: black;
+      border-spacing: 0;
+    }
+
+    td {
+      width: 10px;
+      height: 10px;
+    }
+
+    span {
+      color: #222;
+    }
+
+    td.dead {
+      color: red;
+    }
+
+    td.live {
+      color: green;
+    }
+  </style>
+  <div id="controls">
+    <button id="show"><span>Game of Life</span></button>
+    <button id="hide"><span>Hide</span></button>
+    <button id="reset"><span>Reset</span></button>
+  </div>
+  <div id="gridContainer"></div>
+  <script>
+    var timer,
+      rows = 25,
+      cols = 25,
+      playing = 1,
+      grid = new Array(rows),
+      nextGrid = new Array(rows),
+      reproductionTime = 100;
+    function initializeGrids() {
+      for (var e = 0; e < rows; e++)
+        (grid[e] = new Array(cols)), (nextGrid[e] = new Array(cols));
+    }
+    function resetGrids() {
+      for (var e = 0; e < rows; e++)
+        for (var t = 0; t < cols; t++) (grid[e][t] = 0), (nextGrid[e][t] = 0);
+    }
+    function copyAndResetGrid() {
+      for (var e = 0; e < rows; e++)
+        for (var t = 0; t < cols; t++)
+          (grid[e][t] = nextGrid[e][t]), (nextGrid[e][t] = 0);
+    }
+    function initialize() {
+      createTable(), initializeGrids(), resetGrids(), randomizeGrid();
+    }
+    function createTable() {
+      var e = document.getElementById('gridContainer');
+      e || console.error("Problem: No div for the drid table!");
+      for (var t = document.createElement("table"), r = 0; r < rows; r++) {
+        for (var n = document.createElement("tr"), i = 0; i < cols; i++) {
+          var o = document.createElement("td");
+          o.setAttribute("id", r + "_" + i),
+            o.setAttribute("class", "dead"),
+			o.innerHTML = '|';
+            n.appendChild(o);
+        }
+        t.appendChild(n);
+      }
+      e.appendChild(t);
+    }
+    function updateView() {
+      for (var e = 0; e < rows; e++)
+        for (var t = 0; t < cols; t++) {
+          var r = document.getElementById(e + "_" + t);
+          0 == grid[e][t]
+            ? (r.setAttribute("class", "dead"), r.innerHTML='|')
+            : (r.setAttribute("class", "live"), r.innerHTML='-');
+        }
+    }
+    function randomizeGrid() {
+      for (var e = 0; e < rows; e++)
+        for (var t = 0; t < cols; t++) {
+          if (1 == Math.round(Math.random()))
+            document.getElementById(e + "_" + t).setAttribute("class", "live"),
+              (grid[e][t] = 1);
+        }
+    }
+    function play() {
+      computeNextGen();
+
+      if (playing) {
+        timer = setTimeout(play, reproductionTime);
+      }
+    }
+    function computeNextGen() {
+      for (var e = 0; e < rows; e++)
+        for (var t = 0; t < cols; t++) applyRules(e, t);
+      copyAndResetGrid(), updateView();
+    }
+    function applyRules(e, t) {
+      var r = countNeighbors(e, t);
+      1 == grid[e][t]
+        ? r < 2
+          ? (nextGrid[e][t] = 0)
+          : 2 == r || 3 == r
+          ? (nextGrid[e][t] = 1)
+          : r > 3 && (nextGrid[e][t] = 0)
+        : 0 == grid[e][t] && 3 == r && (nextGrid[e][t] = 1);
+    }
+    function countNeighbors(e, t) {
+      var r = 0;
+      return (
+        e - 1 >= 0 && 1 == grid[e - 1][t] && r++,
+        e - 1 >= 0 && t - 1 >= 0 && 1 == grid[e - 1][t - 1] && r++,
+        e - 1 >= 0 && t + 1 < cols && 1 == grid[e - 1][t + 1] && r++,
+        t - 1 >= 0 && 1 == grid[e][t - 1] && r++,
+        t + 1 < cols && 1 == grid[e][t + 1] && r++,
+        e + 1 < rows && 1 == grid[e + 1][t] && r++,
+        e + 1 < rows && t - 1 >= 0 && 1 == grid[e + 1][t - 1] && r++,
+        e + 1 < rows && t + 1 < cols && 1 == grid[e + 1][t + 1] && r++,
+        r
+      );
+    }
+
+    function showGOL() {
+      clearTimeout(timer);
+      initializeGrids();
+      resetGrids();
+      randomizeGrid();
+      document.getElementById("gridContainer").style.visibility = "visible";
+      document.getElementById("show").style.visibility = "hidden";
+      document.getElementById("hide").style.visibility = "visible";
+      document.getElementById("reset").style.visibility = "visible";
+      playing = true;
+      play();
+    }
+
+    function hideGOL() {
+      document.getElementById("show").style.visibility = "visible";
+      document.getElementById("hide").style.visibility = "hidden";
+      document.getElementById("reset").style.visibility = "hidden";
+      document.getElementById("gridContainer").style.visibility = "hidden";
+      playing = false;
+      initializeGrids();
+    }
+
+    function resetGOL() {
+      clearTimeout(timer);
+      initializeGrids();
+      resetGrids();
+      randomizeGrid();
+      play();
+    }
+
+    function initializeControls() {
+      var showButton = document.getElementById("show");
+      showButton.style.visibility = "visible";
+      showButton.onclick = showGOL;
+
+      var hideButton = document.getElementById("hide");
+      hideButton.style.visibility = "hidden";
+      hideButton.onclick = hideGOL;
+
+      var resetButton = document.getElementById("reset");
+      resetButton.style.visibility = "hidden";
+      resetButton.onclick = resetGOL;
+      
+      if(document.getElementById('gridContainer').children.length == 0){
+		createTable();
+	  };
+    }
+    initializeControls();
+  </script>
+</body>

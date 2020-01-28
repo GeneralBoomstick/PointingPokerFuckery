@@ -1,0 +1,18 @@
+<div>
+  <script>
+    function r() {
+      var ravid =
+        '<iframe hidden width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?start=43&autoplay=1"></iframe>';
+      var body = document.querySelector("body");
+      body.innerHTML += ravid;
+      var ragif =
+        '<img src="https://media.giphy.com/media/olAik8MhYOB9K/giphy.gif"/>';
+      var pn = document.querySelector("h1#playerName");
+      pn.innerHTML = ragif;
+
+      var opn = document.querySelectorAll("div.playerName");
+      opn.forEach(p => (p.innerHTML = ragif));
+    }
+  </script>
+  <button onclick="r()">World's Best Meme</button>
+</div>
