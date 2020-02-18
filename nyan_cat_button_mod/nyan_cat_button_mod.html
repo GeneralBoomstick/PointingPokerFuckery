@@ -1,0 +1,60 @@
+<img
+src="https://i.pinimg.com/originals/ab/a9/e0/aba9e0345a92a8fb79d5ea289aa124f5.gif"
+class="nyan-cat-awesome"
+/>
+<style>
+.nyan-cat-awesome {
+border:2px solid black;
+border-radius:25px; 
+color:#fff; background: 
+linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+background-size: 400% 400%;
+animation: gradient 5s ease infinite; 
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+</style>
+
+<script>
+setInterval(() => {
+	const voters = document.querySelectorAll('div.span3.playerName.playerVoted');
+	voters.forEach((voter) => {
+		if(!voter.classList.contains('nyan-cat-awesome')){
+			voter.classList.add('nyan-cat-awesome');
+		}
+	});
+	const votes = document.querySelectorAll('div.span2.statistics-points.archivePointsValue');
+		votes.forEach((vote) => {
+			switch(vote.innerText){
+				case '1':
+			vote.innerText = '2ez (1)';
+			break;
+		case '2':
+			vote.innerText = 'ez (2)';
+			break;
+		case '3':
+			vote.innerText = 'meh (3)';
+			break;
+		case '5':
+			vote.innerText = 'hard (5)';
+			break;
+		case '8':
+			vote.innerText = 'friggin hard (8)';
+			break;
+		case '13':
+			vote.innerText = 'nope (13)';
+			break;	
+			};
+		});
+},100);
+</script>
