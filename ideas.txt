@@ -1,0 +1,3 @@
+Ideas
+- Counter for number of players who have voted
+- Retheme the whole damn thing
