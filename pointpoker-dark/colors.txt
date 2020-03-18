@@ -1,0 +1,5 @@
+Background: #121212
+Text: #e1e1e1
+Player Rows: #1d1d1d
+Buttons: #02dac5
+Voted Indicator Color: #c38ffe OR bb86fc

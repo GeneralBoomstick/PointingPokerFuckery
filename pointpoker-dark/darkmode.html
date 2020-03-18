@@ -1,0 +1,85 @@
+<script>
+  document.querySelectorAll(".voteButton").forEach(vote => {
+    switch (vote.value) {
+      case "1 point":
+        vote.value = "🔥 (1)";
+        break;
+      case "2 points":
+        vote.value = "🔥🔥 (2)";
+        break;
+      case "3 points":
+        vote.value = "🔥🔥🔥 (3)";
+        break;
+      case "5 points":
+        vote.value = "🔥🔥🔥🔥🔥 (5)";
+        break;
+      case "8 points":
+        vote.value = "🔥🔥🔥🔥🔥🔥🔥🔥 (8)";
+        break;
+      case "13 points":
+        vote.value = "🤬 (13)";
+        break;
+    }
+  });
+  setInterval(() => {
+    document.querySelectorAll(".archivePointsValue").forEach(vote => {
+      switch (vote.innerText) {
+        case "1":
+          vote.innerText = "🔥 (1)";
+          break;
+        case "2":
+          vote.innerText = "🔥🔥 (2)";
+          break;
+        case "3":
+          vote.innerText = "🔥🔥🔥 (3)";
+          break;
+        case "5":
+          vote.innerText = "🔥🔥🔥🔥🔥 (5)";
+          break;
+        case "8":
+          vote.innerText = "🔥🔥🔥🔥🔥🔥🔥🔥 (8)";
+          break;
+        case "13":
+          vote.innerText = "🤬 (13)";
+          break;
+        case "?":
+          vote.innerHTML =
+            "<img src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/61d05cf3-9538-4c39-af1a-66a4b356b56a/d9ocibb-73aabf45-a316-4338-826a-089444aab3d8.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzYxZDA1Y2YzLTk1MzgtNGMzOS1hZjFhLTY2YTRiMzU2YjU2YVwvZDlvY2liYi03M2FhYmY0NS1hMzE2LTQzMzgtODI2YS0wODk0NDRhYWIzZDguZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.OoIKHgEFJdLZkzFdqeexYlVgNZwk3t_bY5vz5M5hasY'></img>";
+          break;
+      }
+    });
+  }, 100);
+</script>
+
+<style>
+  body {
+    background-color: #121212;
+    color: #e1e1e1;
+  }
+
+  .player,
+  .voteHidden {
+    background-color: transparent;
+  }
+
+  .playerVoted {
+    border: 2px solid black;
+    border-radius: 25px;
+    color: #fff;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>
