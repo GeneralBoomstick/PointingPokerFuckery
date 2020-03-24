@@ -2,22 +2,22 @@
   document.querySelectorAll(".voteButton").forEach(vote => {
     switch (vote.value) {
       case "1 point":
-        vote.value = "🔥 (1)";
+        vote.value = "🔥";
         break;
       case "2 points":
-        vote.value = "🔥🔥 (2)";
+        vote.value = "🔥🔥";
         break;
       case "3 points":
-        vote.value = "🔥🔥🔥 (3)";
+        vote.value = "🔥🔥🔥";
         break;
       case "5 points":
-        vote.value = "🔥🔥🔥🔥🔥 (5)";
+        vote.value = "🔥x5";
         break;
       case "8 points":
-        vote.value = "🔥🔥🔥🔥🔥🔥🔥🔥 (8)";
+        vote.value = "🔥x8";
         break;
       case "13 points":
-        vote.value = "🤬 (13)";
+        vote.value = "🤬(13)";
         break;
     }
   });
@@ -25,22 +25,22 @@
     document.querySelectorAll(".archivePointsValue").forEach(vote => {
       switch (vote.innerText) {
         case "1":
-          vote.innerText = "🔥 (1)";
+          vote.innerText = "🔥";
           break;
         case "2":
-          vote.innerText = "🔥🔥 (2)";
+          vote.innerText = "🔥🔥";
           break;
         case "3":
-          vote.innerText = "🔥🔥🔥 (3)";
+          vote.innerText = "🔥🔥🔥";
           break;
         case "5":
-          vote.innerText = "🔥🔥🔥🔥🔥 (5)";
+          vote.innerText = "🔥x5";
           break;
         case "8":
-          vote.innerText = "🔥🔥🔥🔥🔥🔥🔥🔥 (8)";
+          vote.innerText = "🔥x8";
           break;
         case "13":
-          vote.innerText = "🤬 (13)";
+          vote.innerText = "🤬(13)";
           break;
         case "?":
           vote.innerHTML =
@@ -48,7 +48,33 @@
           break;
       }
     });
-  }, 100);
+    document.querySelectorAll(".playerPoints").forEach(vote => {
+      switch (vote.innerText) {
+        case "1":
+          vote.innerText = "🔥";
+          break;
+        case "2":
+          vote.innerText = "🔥🔥";
+          break;
+        case "3":
+          vote.innerText = "🔥🔥🔥";
+          break;
+        case "5":
+          vote.innerText = "🔥x5";
+          break;
+        case "8":
+          vote.innerText = "🔥x8";
+          break;
+        case "13":
+          vote.innerText = "🤬(13)";
+          break;
+        case "?":
+          vote.innerHTML =
+            "<img src='https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/61d05cf3-9538-4c39-af1a-66a4b356b56a/d9ocibb-73aabf45-a316-4338-826a-089444aab3d8.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzYxZDA1Y2YzLTk1MzgtNGMzOS1hZjFhLTY2YTRiMzU2YjU2YVwvZDlvY2liYi03M2FhYmY0NS1hMzE2LTQzMzgtODI2YS0wODk0NDRhYWIzZDguZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.OoIKHgEFJdLZkzFdqeexYlVgNZwk3t_bY5vz5M5hasY'></img>";
+          break;
+      }
+    });
+  }, 200);
 </script>
 
 <style>
@@ -83,3 +109,5 @@
     }
   }
 </style>
+
+<img src="https://media.giphy.com/media/fZ8UkdG2j4D0GAcls9/giphy.gif" />
